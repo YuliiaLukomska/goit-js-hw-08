@@ -29,7 +29,7 @@ img {
 .gallery-image {
   width: 360px;
   height: 200px;
-  transition: transform, 3s, linear;
+  transition: transform, 1s;
 }
 .gallery-image:hover,
 .gallery-image:focus {

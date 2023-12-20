@@ -64,19 +64,8 @@ const images = [
   },
 ];
 
-// <li class="gallery-item">
-//   <a class="gallery-link" href="large-image.jpg">
-//     <img
-//       class="gallery-image"
-//       src="small-image.jpg"
-//       data-source="large-image.jpg"
-//       alt="Image description"
-//     />
-//   </a>
-// </li>;
-
 const galleryList = document.querySelector('.gallery');
-galleryList.innerHTML = createGalleryMarkUp(images);
+galleryList.insertAdjacentHTML('afterbegin', createGalleryMarkUp(images));
 
 function createGalleryMarkUp(arr) {
   return arr
@@ -89,6 +78,3 @@ function createGalleryMarkUp(arr) {
     )
     .join('');
 }
-
-const result = createGalleryMarkUp(images);
-console.log(result);
