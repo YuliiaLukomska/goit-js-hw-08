@@ -67,6 +67,17 @@ const images = [
 const galleryList = document.querySelector('.gallery');
 galleryList.insertAdjacentHTML('afterbegin', createGalleryMarkUp(images));
 
+galleryList.addEventListener('click', event => {
+  event.preventDefault();
+  if (event.target === event.currentTarget) {
+    return;
+  }
+
+  const image = event.target;
+  const originalImgRef = image.dataset.source;
+  console.log(originalImgRef);
+});
+
 function createGalleryMarkUp(arr) {
   return arr
     .map(
