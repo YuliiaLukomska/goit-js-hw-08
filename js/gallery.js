@@ -80,13 +80,15 @@ galleryList.innerHTML = createGalleryMarkUp(images);
 
 function createGalleryMarkUp(arr) {
   return arr
-    .map(({ preview, original, description }) => {
-      `<li class='gallery-item'>
-            <a class='gallery-link', href='${original}'>
-            <img class='gallery-image' src='${preview}' data-source='${original}' alt='${description}'
-            />
+    .map(
+      ({ preview, original, description }) =>
+        `<li class='gallery-item'><a class='gallery-link' href='${original}'>
+            <img class='gallery-image' src='${preview}' data-source='${original}' alt='${description}'>
           </a>
-        </li>`;
-    })
+        </li>`
+    )
     .join('');
 }
+
+const result = createGalleryMarkUp(images);
+console.log(result);
