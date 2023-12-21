@@ -76,7 +76,7 @@ galleryList.addEventListener('click', event => {
   const originalImgRef = event.target.dataset.source;
 
   const instance = basicLightbox.create(
-    `<img src="${originalImgRef}" width="1112" height="640">`,
+    `<img src="${originalImgRef}" width="800" height="600">`,
     {
       onShow: instance => {
         galleryList.addEventListener('keydown', event => {
