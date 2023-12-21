@@ -73,9 +73,21 @@ galleryList.addEventListener('click', event => {
     return;
   }
 
-  const image = event.target;
-  const originalImgRef = image.dataset.source;
-  console.log(originalImgRef);
+  const originalImgRef = event.target.dataset.source;
+
+  const instance = basicLightbox.create(
+    `<img src="${originalImgRef}" width="800" height="600">`,
+    {
+      onShow: instance => {
+        galleryList.addEventListener('keydown', event => {
+          if (event.code === `Escape`) {
+            instance.close();
+          }
+        });
+      },
+    }
+  );
+  instance.show();
 });
 
 function createGalleryMarkUp(arr) {
