@@ -78,17 +78,26 @@ galleryList.addEventListener('click', event => {
   const instance = basicLightbox.create(
     `<img src="${originalImgRef}" width="800" height="600">`,
     {
-      onShow: instance => {
-        galleryList.addEventListener('keydown', event => {
-          if (event.code === `Escape`) {
-            instance.close();
-          }
-        });
-      },
+      onShow: addEvtListener,
+      onClose: removeEvtListener,
     }
   );
   instance.show();
 });
+
+function addEvtListener(instance) {
+  document.addEventListener('keydown', closeInstanceByEscape.bind(instance));
+}
+
+function closeInstanceByEscape(event) {
+  if (event.code === `Escape`) {
+    this.close();
+  }
+}
+
+function removeEvtListener(instance) {
+  document.removeEventListener('keydown', closeInstanceByEscape.bind(instance));
+}
 
 function createGalleryMarkUp(arr) {
   return arr
