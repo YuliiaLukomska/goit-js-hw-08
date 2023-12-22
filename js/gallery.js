@@ -64,54 +64,6 @@ const images = [
   },
 ];
 
-// const galleryList = document.querySelector('.gallery');
-// galleryList.insertAdjacentHTML('afterbegin', createGalleryMarkUp(images));
-
-// galleryList.addEventListener('click', event => {
-//   event.preventDefault();
-//   if (event.target === event.currentTarget) {
-//     return;
-//   }
-
-//   const originalImgRef = event.target.dataset.source;
-
-//   const instance = basicLightbox.create(
-//     `<img src="${originalImgRef}" width="800" height="600">`,
-//     {
-//       onShow: addEvtListener,
-//       onClose: removeEvtListener,
-//     }
-//   );
-//   instance.show();
-// });
-
-// function addEvtListener(instance) {
-//   document.addEventListener('keydown', closeInstanceByEscape.bind(instance));
-// }
-
-// function closeInstanceByEscape(event) {
-//   if (event.code === `Escape`) {
-//     this.close();
-//   }
-//   console.log(event.code);
-// }
-
-// function removeEvtListener(instance) {
-//   document.removeEventListener('keydown', closeInstanceByEscape.bind(instance));
-// }
-
-// function createGalleryMarkUp(arr) {
-//   return arr
-//     .map(
-//       ({ preview, original, description }) =>
-//         `<li class='gallery-item'><a class='gallery-link' href='${original}'>
-//             <img class='gallery-image' src='${preview}' data-source='${original}' alt='${description}'>
-//           </a>
-//         </li>`
-//     )
-//     .join('');
-// }
-
 const galleryList = document.querySelector('.gallery');
 galleryList.insertAdjacentHTML('afterbegin', createGalleryMarkUp(images));
 
@@ -127,26 +79,22 @@ galleryList.addEventListener('click', event => {
     `<img src="${originalImgRef}" width="800" height="600">`,
     {
       onShow: instance => {
-        document.addEventListener('keydown', (event, instance) =>
-          closeInstanceByEscape()
-        );
+        document.addEventListener('keydown', closeInstanceByEscape);
       },
       onClose: instance => {
-        document.removeEventListener('keydown', (event, instance) =>
-          closeInstanceByEscape()
-        );
+        document.removeEventListener('keydown', closeInstanceByEscape);
       },
     }
   );
   instance.show();
-});
 
-function closeInstanceByEscape(event, instance) {
-  if (event.code === `Escape`) {
-    instance.close();
+  function closeInstanceByEscape(event) {
+    if (event.code === 'Escape') {
+      instance.close();
+    }
+    console.log(event.code);
   }
-  console.log(event.code);
-}
+});
 
 function createGalleryMarkUp(arr) {
   return arr
